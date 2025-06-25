@@ -7,19 +7,6 @@ const cartSummary = document.getElementById('cart-summary');
 // Estado del carrito (array de productos)
 let cart = [];
 
-// Renderiza el carrito en el DOM y muestra el resumen
-const renderCart = () => {
-  cartList.innerHTML = '';
-  cart.forEach((item, idx) => {
-    const li = document.createElement('li');
-    li.textContent = `${item.name} - $${item.price}`;
-    // TODO: Agrega aquí el botón y la lógica para eliminar el producto del carrito
-    cartList.appendChild(li);
-  });
-  // TODO: Calcula y muestra el total y la cantidad de productos
-  cartSummary.textContent = 'Total: $... | Productos: ...';
-};
-
 // Maneja el evento de agregar productos al carrito usando delegación de eventos
 productList.addEventListener('click', e => {
   if (e.target.classList.contains('add')) {
@@ -30,11 +17,36 @@ productList.addEventListener('click', e => {
   }
 });
 
-// TODO: Maneja el evento de eliminar productos del carrito usando delegación de eventos
-// cartList.addEventListener(...)
+// Maneja el evento de eliminar productos del carrito usando delegación de eventos
+cartList.addEventListener('click', e => {
+  if (e.target.classList.contains('remove')) {
+    cart.splice(e.target.dataset.idx, 1);
+    renderCart();
+  }
+});
 
-// TODO: Maneja el evento de vaciar el carrito
-// emptyCartBtn.addEventListener(...)
+// Maneja el evento de vaciar el carrito
+emptyCartBtn.addEventListener('click', () => {
+  cart = [];
+  renderCart();
+});
+
+// Renderiza el carrito en el DOM y muestra el resumen
+const renderCart = () => {
+  cartList.innerHTML = '';
+  cart.forEach((item, idx) => {
+    const li = document.createElement('li');
+    li.textContent = `${item.name} - $${item.price}`;
+    const btn = document.createElement('button');
+    btn.textContent = 'Eliminar';
+    btn.className = 'remove';
+    btn.dataset.idx = idx;
+    li.appendChild(btn);
+    cartList.appendChild(li);
+  });
+  const total = cart.reduce((sum, item) => sum + Number(item.price), 0);
+  cartSummary.textContent = `Total: $${total} | Productos: ${cart.length}`;
+};
 
 // Render inicial del carrito
-renderCart(); 
+renderCart();
