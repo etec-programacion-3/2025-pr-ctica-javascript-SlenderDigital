@@ -1,17 +1,29 @@
-// Referencia al contenedor principal de la SPA
 const app = document.getElementById('app');
 
 // Definición de rutas y sus vistas asociadas (solo básicas)
 const routes = {
   '/': () => '<h1>Inicio</h1><p>Bienvenido a la SPA.</p>',
   '/productos': () => '<h1>Productos</h1><p>Lista de productos aquí.</p>',
-  '/contacto': () => '<h1>Contacto</h1><p>Formulario de contacto aquí.</p>'
-  // TODO: Agrega aquí la ruta y la vista para /producto/1
+  '/contacto': () => '<h1>Contacto</h1><p>Formulario de contacto aquí.</p>',
+  '/producto/:id': id => `<h1>Producto ${id}</h1><p>Detalles del producto ${id} aquí.</p>`
 };
 
-// Renderiza la vista correspondiente a la ruta actual
+function matchRoute(path) {
+  if (routes[path]) return { view: routes[path], params: [] };
+  const productoMatch = path.match(/^\/producto\/(\d+)$/);
+  if (productoMatch) {
+    return { view: routes['/producto/:id'], params: [productoMatch[1]] };
+  }
+  return null;
+}
+
 const render = route => {
-  app.innerHTML = routes[route] ? routes[route]() : '<h1>404</h1><p>Página no encontrada.</p>';
+  const match = matchRoute(route);
+  if (match) {
+    app.innerHTML = match.view(...match.params);
+  } else {
+    app.innerHTML = '<h1>404</h1><p>Página no encontrada.</p>';
+  }
 };
 
 // Cambia la ruta usando history.pushState y renderiza la nueva vista
@@ -30,8 +42,28 @@ document.querySelector('nav').addEventListener('click', e => {
   }
 });
 
-// TODO: Maneja el evento popstate para soportar navegación con los botones del navegador
-// window.addEventListener(...)
+const originalProductos = routes['/productos'];
+routes['/productos'] = () => `
+  <h1>Productos</h1>
+  <ul>
+    <li><a href="/producto/1" data-link>Producto 1</a></li>
+    <li><a href="/producto/2" data-link>Producto 2</a></li>
+    <li><a href="/producto/3" data-link>Producto 3</a></li>
+  </ul>
+`;
 
-// Render inicial según la ruta actual
-render(window.location.pathname); 
+document.body.addEventListener('click', e => {
+  if (e.target.matches('a[data-link]')) {
+    e.preventDefault();
+    navigate(e.target.getAttribute('href'));
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  render(window.location.pathname);
+});
+window.addEventListener('popstate', () => {
+  render(window.location.pathname);
+});
+
+render(window.location.pathname);
