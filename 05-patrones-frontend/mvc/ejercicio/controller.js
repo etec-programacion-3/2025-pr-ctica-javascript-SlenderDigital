@@ -11,9 +11,9 @@ class TaskController {
     this.view.render(this.model.getTasks());
     // Asocia el evento de agregar tarea
     this.view.bindAddTask(this.handleAddTask);
-    // TODO: Asocia los eventos de eliminar y editar tarea
-    // this.view.bindRemoveTask(this.handleRemoveTask);
-    // this.view.bindEditTask(this.handleEditTask);
+    // Asocia los eventos de eliminar y editar tarea
+    this.view.bindRemoveTask(this.handleRemoveTask);
+    this.view.bindEditTask(this.handleEditTask);
   }
 
   // Maneja el evento de agregar tarea
@@ -22,12 +22,18 @@ class TaskController {
     this.view.render(this.model.getTasks()); // Actualiza la vista
   };
 
-  // TODO: Maneja el evento de eliminar tarea
-  // handleRemoveTask = idx => { ... };
+  // Maneja el evento de eliminar tarea
+  handleRemoveTask = idx => {
+    this.model.removeTask(idx); // Actualiza el modelo
+    this.view.render(this.model.getTasks()); // Actualiza la vista
+  };
 
-  // TODO: Maneja el evento de editar tarea
-  // handleEditTask = (idx, newTask) => { ... };
+  // Maneja el evento de editar tarea
+  handleEditTask = (idx, newTask) => {
+    this.model.editTask(idx, newTask); // Actualiza el modelo
+    this.view.render(this.model.getTasks()); // Actualiza la vista
+  };
 }
 
 // Instancia el controlador con el modelo y la vista
-new TaskController(new TaskModel(), new TaskView()); 
+new TaskController(new TaskModel(), new TaskView());

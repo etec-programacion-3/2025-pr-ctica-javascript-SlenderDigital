@@ -4,23 +4,120 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carrito de Compras (Ejercicio)</title>
+  <style>
+  /* git add *, etc */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+
+  header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .cart-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .cart-item:last-child {
+    border-bottom: none;
+  }
+
+  .cart-item button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .cart-item button:hover {
+    background-color: #c82333;
+  }
+
+  .cart-summary {
+    text-align: right;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+  h1, h2 {
+    color: #333;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  #cart-summary {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+</style>
 </head>
 <body>
-  <h1>Carrito de Compras (Ejercicio)</h1>
-  <section>
-    <h2>Productos</h2>
-    <ul id="product-list">
-      <li data-id="1" data-name="Laptop" data-price="1200">Laptop - $1200 <button class="add">Agregar</button></li>
-      <li data-id="2" data-name="Mouse" data-price="50">Mouse - $50 <button class="add">Agregar</button></li>
-      <li data-id="3" data-name="Teclado" data-price="80">Teclado - $80 <button class="add">Agregar</button></li>
-    </ul>
-  </section>
-  <section>
-    <h2>Carrito</h2>
-    <ul id="cart-list"></ul>
-    <button id="empty-cart">Vaciar carrito</button>
-    <p id="cart-summary"></p>
-  </section>
+  <header>
+    <h1>Carrito de Compras (Ejercicio)</h1>
+  </header>
+  <div class="cart-container">
+    <section>
+      <h2>Productos</h2>
+      <ul id="product-list">
+        <li data-id="1" data-name="Laptop" data-price="1200">Laptop - $1200 <button class="add">Agregar</button></li>
+        <li data-id="2" data-name="Mouse" data-price="50">Mouse - $50 <button class="add">Agregar</button></li>
+        <li data-id="3" data-name="Teclado" data-price="80">Teclado - $80 <button class="add">Agregar</button></li>
+      </ul>
+    </section>
+    <section>
+      <h2>Carrito</h2>
+      <ul id="cart-list"></ul>
+      <button id="empty-cart">Vaciar carrito</button>
+      <p id="cart-summary"></p>
+    </section>
+  </div>
   <script type="module" src="main.js"></script>
 </body>
-</html> 
+</html>
