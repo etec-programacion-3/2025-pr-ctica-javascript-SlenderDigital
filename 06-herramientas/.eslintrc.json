@@ -10,7 +10,7 @@
   },
   "rules": {
     "no-unused-vars": "warn",
-    "semi": ["error", "always"],
+    "semi": ["error", "always"], // Regla personalizada
     "quotes": ["error", "single"]
   }
 }
