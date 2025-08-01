@@ -22,8 +22,16 @@ export class TaskModel {
     this._commit();
   }
 
+  // Edita una tarea por índice y guarda el estado
+  editTask(index, newTask) {
+    if (index >= 0 && index < this.tasks.length) {
+      this.tasks[index] = newTask;
+      this._commit();
+    }
+  }
+
   // Guarda el estado actual de las tareas en localStorage
   _commit() {
     localStorage.setItem('mvc-tasks', JSON.stringify(this.tasks));
   }
-} 
+}

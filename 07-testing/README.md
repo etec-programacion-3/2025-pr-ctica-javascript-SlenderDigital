@@ -7,7 +7,7 @@ Esta carpeta te enseña a hacer pruebas simples en JavaScript usando `console.as
 - `assertions-resuelto.js`: Pruebas completas y funcionales con `console.assert` (ejemplo resuelto).
 - `assertions-ejercicio.js`: Pruebas incompletas para completar (ejercicio para resolver).
 - `jest/`:
-  - `resuelto.test.js`: Pruebas unitarias completas y funcionales (ejemplo resuelto).
+  - `resuelto.test.js`: Pruebas unitarias completas y funcionales (ejempJlo resuelto).
   - `ejercicio.test.js`: Pruebas incompletas para completar (ejercicio para resolver).
   - `package.json`: Configuración mínima para Jest.
 
@@ -29,9 +29,9 @@ Esta carpeta te enseña a hacer pruebas simples en JavaScript usando `console.as
 - [Unit Testing in JavaScript (en inglés) - freeCodeCamp](https://www.freecodecamp.org/news/unit-testing-javascript/)
 
 ## Ejercicios
-1. Escribe pruebas para una función que calcule el total de un carrito.
-2. Instala Jest y crea un archivo de prueba para una función de suma.
-3. Haz que una prueba falle y observa el resultado.
+1. Escribe pruebas para una función que calcule el total de un carrito. LISTO
+2. Instala Jest y crea un archivo de prueba para una función de suma. LISTO
+3. Haz que una prueba falle y observa el resultado. LISTO
 
 ## Conceptos clave
 - Pruebas unitarias
